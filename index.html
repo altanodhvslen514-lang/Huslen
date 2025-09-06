@@ -1,197 +1,191 @@
-import { useState } from "react"; import { ShoppingCart, Search, Menu, X, Heart, User, ChevronRight, SlidersHorizontal } from "lucide-react"; import { motion, AnimatePresence } from "framer-motion";
-
-// --- Dummy data (replace with your API later) --- const categories = [ { title: "Эрэгтэй", href: "#men" }, { title: "Эмэгтэй", href: "#women" }, { title: "Хүүхэд", href: "#kids" }, { title: "Шинээр ирсэн", href: "#new" }, { title: "Хямдрал", href: "#sale" }, ];
-
-const products = [ { id: 1, name: "Nike Air Zoom Pegasus 41", price: 329000, tag: "Шинэ", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1600&auto=format&fit=crop", colors: ["Цагаан", "Хар", "Улаан"], }, { id: 2, name: "Nike Air Force 1 '07", price: 359000, tag: "Тренд", image: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=1600&auto=format&fit=crop", colors: ["Цагаан", "Хар"], }, { id: 3, name: "Nike Dunk Low Retro", price: 379000, tag: "Хязгаарлагдмал", image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop", colors: ["Хөх", "Шар", "Хар"], }, { id: 4, name: "Nike Invincible 3", price: 489000, tag: "Гүйлт", image: "https://images.unsplash.com/photo-1542291024-54cc07a1b3fa?q=80&w=1600&auto=format&fit=crop", colors: ["Саарал", "Цэнхэр"], }, ];
-
-const formatPrice = (n: number) => new Intl.NumberFormat("mn-MN").format(n) + " ₮";
-
-function Nav() { const [open, setOpen] = useState(false); return ( <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b"> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div className="h-16 flex items-center justify-between gap-3"> {/* Left */} <div className="flex items-center gap-2"> <button className="p-2 rounded-2xl hover:bg-gray-100 md:hidden" onClick={() => setOpen(true)} aria-label="Цэс нээх" > <Menu className="w-6 h-6" /> </button>
-
-<a href="#" className="font-black tracking-tight text-2xl">
-          NIKE
-        </a>
-
-        <nav className="hidden md:flex items-center gap-6 ml-6">
-          {categories.map((c) => (
-            <a
-              key={c.title}
-              href={c.href}
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              {c.title}
-            </a>
-          ))}
-        </nav>
-      </div>
-
-      {/* Search */}
-      <div className="hidden md:flex items-center flex-1 max-w-lg">
-        <div className="relative w-full">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" />
-          <input
-            className="w-full pl-9 pr-3 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-black"
-            placeholder="Хайх: Air Force, Pegasus, Hoodie…"
-          />
-        </div>
-      </div>
-
-      {/* Right */}
-      <div className="flex items-center gap-2">
-        <button className="p-2 rounded-2xl hover:bg-gray-100">
-          <Heart className="w-6 h-6" />
-        </button>
-        <button className="p-2 rounded-2xl hover:bg-gray-100">
-          <User className="w-6 h-6" />
-        </button>
-        <CartToggle />
-      </div>
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nike Mongolia</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1.1em;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #e5e5e5;
+    }
+    .hero {
+      background: url('https://static.nike.com/a/images/f_auto/dpr_2.0,cs_srgb/w_1423,c_limit/9d1c2e08-8d18-4e8a-8365-d8fc8ac5d53e/nike-just-do-it.jpg') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 60px;
+      color: #fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .hero-content {
+      max-width: 500px;
+      background: rgba(0,0,0,0.5);
+      padding: 30px;
+      border-radius: 12px;
+    }
+    .hero-content h1 {
+      font-size: 2.5em;
+      margin: 0 0 10px 0;
+    }
+    .hero-content p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    .hero-content button {
+      background: #fff;
+      color: #111;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-content button:hover {
+      background: #111;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+    .products {
+      display: flex;
+      justify-content: space-around;
+      margin: 60px 0;
+    }
+    .product-card {
+      width: 300px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background: #fafafa;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+    }
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #eee;
+    }
+    .product-card h2 {
+      font-size: 1.2em;
+      margin: 20px 0 10px 0;
+    }
+    .product-card p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+    .product-card button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .product-card button:hover {
+      background: #444;
+    }
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 18px 0;
+      margin-top: 50px;
+    }
+    @media (max-width: 900px) {
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-card {
+        margin-bottom: 30px;
+      }
+      .hero {
+        padding: 30px 12px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NIKE</div>
+    <nav>
+      <a href="#">Нүүр</a>
+      <a href="#">Бүтээгдэхүүн</a>
+      <a href="#">Холбоо барих</a>
+      <a href="#">Нэвтрэх</a>
+    </nav>
+  </header>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Just Do It.</h1>
+      <p>Шинэ коллекц, шилдэг гуталнууд Nike дээр худалдаанд гарлаа.</p>
+      <button>Дэлгэрэнгүй үзэх</button>
     </div>
   </div>
-
-  {/* Mobile drawer */}
-  <AnimatePresence>
-    {open && (
-      <motion.aside
-        initial={{ x: -320, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -320, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 30 }}
-        className="fixed top-0 left-0 h-full w-80 bg-white shadow-2xl border-r p-4 flex flex-col"
-      >
-        <div className="flex items-center justify-between">
-          <span className="font-black text-xl">NIKE</span>
-          <button
-            className="p-2 rounded-xl hover:bg-gray-100"
-            onClick={() => setOpen(false)}
-            aria-label="Хаах"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-        <div className="mt-4">
-          {categories.map((c) => (
-            <a
-              key={c.title}
-              href={c.href}
-              className="flex items-center justify-between py-3 text-base border-b"
-            >
-              {c.title}
-              <ChevronRight className="w-4 h-4" />
-            </a>
-          ))}
-        </div>
-        <div className="mt-4">
-          <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              className="w-full pl-9 pr-3 py-2 rounded-full border focus:outline-none"
-              placeholder="Бүтээгдэхүүн хайх"
-            />
-          </div>
-        </div>
-      </motion.aside>
-    )}
-  </AnimatePresence>
-</header>
-
-); }
-
-function CartToggle() { const [open, setOpen] = useState(false); return ( <> <button className="p-2 rounded-2xl hover:bg-gray-100 relative" onClick={() => setOpen(true)} aria-label="Сагс" > <ShoppingCart className="w-6 h-6" /> <span className="absolute -top-1 -right-1 text-[10px] bg-black text-white rounded-full w-5 h-5 grid place-content-center">2</span> </button> <AnimatePresence> {open && ( <motion.div className="fixed inset-0 z-[60]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} > <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} /> <motion.aside initial={{ x: 420 }} animate={{ x: 0 }} exit={{ x: 420 }} transition={{ type: "spring", stiffness: 260, damping: 30 }} className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl p-6" > <div className="flex items-center justify-between"> <h3 className="text-xl font-semibold">Таны сагс</h3> <button className="p-2 rounded-xl hover:bg-gray-100" onClick={() => setOpen(false)} aria-label="Сагс хаах" > <X className="w-5 h-5" /> </button> </div> <div className="mt-4 space-y-4"> {products.slice(0, 2).map((p) => ( <div key={p.id} className="flex gap-3 border rounded-2xl p-3"> <img
-src={p.image}
-alt={p.name}
-className="w-20 h-20 rounded-xl object-cover"
-/> <div className="flex-1"> <div className="text-sm font-medium line-clamp-1">{p.name}</div> <div className="text-xs text-gray-500">Өнгө: {p.colors[0]} · Размер: 42</div> <div className="text-sm mt-1 font-semibold">{formatPrice(p.price)}</div> </div> </div> ))} </div> <div className="mt-6 border-t pt-4 space-y-2"> <div className="flex justify-between text-sm"> <span>Нийт</span> <span className="font-semibold">{formatPrice( products[0].price + products[1].price )}</span> </div> <button className="w-full py-3 rounded-2xl bg-black text-white font-semibold"> Төлбөр төлөх </button> </div> </motion.aside> </motion.div> )} </AnimatePresence> </> ); }
-
-function Hero() { return ( <section className="relative overflow-hidden"> <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-4 sm:px-6 lg:px-8 py-10 md:py-16"> <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="space-y-4" > <span className="inline-block text-xs tracking-widest uppercase">Шинэ цуглуулга</span> <h1 className="text-4xl md:text-6xl font-black leading-[1.1]"> Air багц — <span className="underline underline-offset-8 decoration-[8px]">Хөнгөн. Хурдан. Тогтвортой.</span> </h1> <p className="text-gray-600 max-w-xl"> Таны гүйлт, өдөр тутам, спортын амьдралд зориулагдсан Nike-ийн шинэ загварууд. Хөлд эвтэйхэн, гүйцэтгэл өндөр, стильтэй. </p> <div className="flex gap-3 pt-2"> <a href="#featured" className="px-5 py-3 rounded-2xl bg-black text-white font-semibold"> Одоо авах </a> <a href="#collections" className="px-5 py-3 rounded-2xl border font-semibold"> Цуглуулгууд харах </a> </div> </motion.div> <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }} className="relative" > <img
-src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1800&auto=format&fit=crop"
-alt="Nike Hero"
-className="w-full aspect-[4/3] md:aspect-[5/4] object-cover rounded-[2rem] shadow-2xl"
-/> <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-4 py-2 rounded-2xl text-sm shadow"> Зураг: Unsplash </div> </motion.div> </div> </section> ); }
-
-function Badge({ children }: { children: string }) { return ( <span className="absolute left-3 top-3 z-10 text-[11px] font-semibold bg-white px-2 py-1 rounded-full border"> {children} </span> ); }
-
-function ProductCard({ p }: { p: (typeof products)[number] }) { const [hover, setHover] = useState(false); const [color, setColor] = useState(0); return ( <div className="group relative rounded-3xl border overflow-hidden bg-white shadow-sm hover:shadow-xl transition-shadow" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} > <Badge>{p.tag}</Badge> <div className="relative"> <img src={p.image} alt={p.name} className="w-full aspect-square object-cover" /> <button className="absolute right-3 top-3 p-2 rounded-full bg-white/90 hover:bg-white border"> <Heart className="w-4 h-4" /> </button> </div> <div className="p-4"> <div className="text-sm text-gray-500">Unisex гутал</div> <div className="font-medium line-clamp-1">{p.name}</div> <div className="mt-1 font-semibold">{formatPrice(p.price)}</div>
-
-<div className="flex items-center gap-2 mt-3">
-      {p.colors.map((c, i) => (
-        <button
-          key={c}
-          onClick={() => setColor(i)}
-          className={`px-2.5 py-1 rounded-full border text-xs ${
-            color === i ? "bg-black text-white" : "bg-white"
-          }`}
-        >
-          {c}
-        </button>
-      ))}
+  <div class="products">
+    <div class="product-card">
+      <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/5c8b84f3-5d23-49e7-b0a6-9f7b8b0d8674/air-max-90-shoes-KkLcGR.png" alt="Nike Air Max 90">
+      <h2>Nike Air Max 90</h2>
+      <p>Чамин, дээд зэрэглэлийн Air Max 90 эрэгтэй гутал.</p>
+      <button>Худалдаж авах</button>
     </div>
-
-    <div className="mt-4 flex gap-2">
-      <button className="flex-1 py-2.5 rounded-xl bg-black text-white text-sm font-semibold">
-        Сагсанд хийх
-      </button>
-      <button className="px-3 py-2.5 rounded-xl border text-sm font-medium">Дэлгэрэнгүй</button>
+    <div class="product-card">
+      <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/ee2e8b1d-8d7a-4e2c-9c8a-d8e8d3b3d9e7/air-force-1-07-shoes-6jXG0F.png" alt="Nike Air Force 1">
+      <h2>Nike Air Force 1</h2>
+      <p>Энгийн бөгөөд цэвэрхэн Air Force 1 загварын гутал.</p>
+      <button>Худалдаж авах</button>
+    </div>
+    <div class="product-card">
+      <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/3e7a9c2e-1f0f-4c0d-9e2c-8c44c7d4a0d7/pegasus-40-road-running-shoes-8T0ZrR.png" alt="Nike Pegasus 40">
+      <h2>Nike Pegasus 40</h2>
+      <p>Хөнгөн, хурдан гүйгчдэд зориулсан Pegasus 40.</p>
+      <button>Худалдаж авах</button>
     </div>
   </div>
-</div>
-
-); }
-
-function Featured() { return ( <section id="featured" className="py-10 md:py-16 bg-gradient-to-b from-white to-gray-50"> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div className="flex items-end justify-between gap-4"> <h2 className="text-2xl md:text-3xl font-black">Онцлох бүтээгдэхүүн</h2> <button className="flex items-center gap-2 text-sm font-semibold"> Бүгдийг харах <ChevronRight className="w-4 h-4" /> </button> </div> <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-6"> {products.map((p) => ( <motion.div key={p.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }} > <ProductCard p={p} /> </motion.div> ))} </div> </div> </section> ); }
-
-function Collections() { return ( <section id="collections" className="py-10 md:py-16"> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6"> <div className="flex items-center justify-between"> <h2 className="text-2xl md:text-3xl font-black">Цуглуулгууд</h2> <button className="flex items-center gap-2 text-sm font-semibold"> Шүүлтүүр <SlidersHorizontal className="w-4 h-4" /> </button> </div>
-
-<div className="grid md:grid-cols-3 gap-6">
-      {[
-        {
-          title: "Гүйлтийн багц",
-          img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop",
-        },
-        {
-          title: "LifeStyle кросс",
-          img: "https://images.unsplash.com/photo-1542291024-54cc07a1b3fa?q=80&w=1600&auto=format&fit=crop",
-        },
-        {
-          title: "Сагсан бөмбөг",
-          img: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1600&auto=format&fit=crop",
-        },
-      ].map((c) => (
-        <a
-          key={c.title}
-          href="#"
-          className="relative rounded-[2rem] overflow-hidden group block"
-        >
-          <img
-            src={c.img}
-            alt={c.title}
-            className="w-full aspect-[16/10] object-cover group-hover:scale-[1.03] transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          <div className="absolute bottom-4 left-4 text-white">
-            <div className="text-sm opacity-80">Nike</div>
-            <div className="text-2xl font-black">{c.title}</div>
-            <button className="mt-2 px-4 py-2 rounded-xl bg-white text-black text-sm font-semibold">
-              Дэлгэрэнгүй
-            </button>
-          </div>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
-); }
-
-function Promo() { return ( <section className="py-12"> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div className="rounded-[2rem] border overflow-hidden grid md:grid-cols-2"> <div className="p-8 md:p-12 space-y-3 bg-white"> <div className="text-xs tracking-widest uppercase">Member only</div> <h3 className="text-2xl md:text-3xl font-black">Nike Membership</h3> <p className="text-gray-600 max-w-md"> Гишүүнчлэлд нэгдэн онцгой хямдрал, өмнө нь зарагдаагүй өнгө загвар, захиалгын уян хатан нөхцөл зэрэг давуу талуудыг аваарай. </p> <div className="flex gap-3 pt-2"> <a className="px-5 py-3 rounded-2xl bg-black text-white font-semibold" href="#"> Үнэгүй нэгдэх </a> <a className="px-5 py-3 rounded-2xl border font-semibold" href="#"> Нэвтрэх </a> </div> </div> <img
-src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1800&auto=format&fit=crop"
-alt="Membership"
-className="w-full h-full object-cover"
-/> </div> </div> </section> ); }
-
-function Footer() { return ( <footer className="bg-black text-gray-300 pt-12 pb-8"> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8"> <div> <div className="text-white font-black text-xl">NIKE</div> <p className="mt-3 text-sm text-gray-400 max-w-xs"> Спортын ирээдүйг хамтдаа бүтээе. Чиний урам зориг, бидний технологи. </p> </div> {[ { h: "Тусламж", l: ["Захиалга шалгах", "Хүргэлт", "Буцаалт", "Хэмжээний хүснэгт"] }, { h: "Компани", l: ["Бидний тухай", "Мэдээ", "Ажлын байр", "Хариуцлага"] }, { h: "Холбоо барих", l: ["support@nike.mn", "+976 7000-0000", "Facebook", "Instagram"] }, ].map((col) => ( <div key={col.h}> <div className="text-white font-semibold mb-3">{col.h}</div> <ul className="space-y-2 text-sm"> {col.l.map((x) => ( <li key={x}> <a href="#" className="hover:underline underline-offset-4"> {x} </a> </li> ))} </ul> </div> ))} </div> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500"> <div>© {new Date().getFullYear()} Nike — Сургалтын демо хуудсанд зориулав</div> <div className="flex items-center gap-4"> <a href="#" className="hover:underline">Нууцлал</a> <a href="#" className="hover:underline">Үйлчилгээний нөхцөл</a> <a href="#" className="hover:underline">Cookie тохиргоо</a> </div> </div> </footer> ); }
-
-export default function NikeHome() { return ( <div className="min-h-screen bg-white text-gray-900"> <Announcement /> <Nav /> <Hero /> <Featured /> <Collections /> <Promo /> <Footer /> </div> ); }
-
-function Announcement() { return ( <div className="bg-black text-white text-center text-xs py-2 px-4"> Хязгаарлагдмал хугацаанд хүргэлт ҮНЭГҮЙ — Купон: <b>MOVEFAST</b> </div> ); }
-
+  <footer>
+    © 2025 Nike Mongolia. Бүх эрх хуулиар хамгаалагдсан.
+  </footer>
+</body>
+</html>
