@@ -1,197 +1,368 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="mn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nike Mongolia</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #111;
-    }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 2em;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 25px;
-      font-size: 1.1em;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: #e5e5e5;
-    }
-    .hero {
-      background: url('https://static.nike.com/a/images/f_auto/dpr_2.0,cs_srgb/w_1423,c_limit/9d1c2e08-8d18-4e8a-8365-d8fc8ac5d53e/nike-just-do-it.jpg') center/cover no-repeat;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 40px 60px;
-      color: #fff;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-    .hero-content {
-      max-width: 500px;
-      background: rgba(0,0,0,0.5);
-      padding: 30px;
-      border-radius: 12px;
-    }
-    .hero-content h1 {
-      font-size: 2.5em;
-      margin: 0 0 10px 0;
-    }
-    .hero-content p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-    .hero-content button {
-      background: #fff;
-      color: #111;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 25px;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .hero-content button:hover {
-      background: #111;
-      color: #fff;
-      border: 1px solid #fff;
-    }
-    .products {
-      display: flex;
-      justify-content: space-around;
-      margin: 60px 0;
-    }
-    .product-card {
-      width: 300px;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      background: #fafafa;
-      text-align: center;
-      transition: box-shadow 0.2s;
-    }
-    .product-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.16);
-    }
-    .product-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: #eee;
-    }
-    .product-card h2 {
-      font-size: 1.2em;
-      margin: 20px 0 10px 0;
-    }
-    .product-card p {
-      color: #666;
-      margin-bottom: 20px;
-      font-size: 1em;
-    }
-    .product-card button {
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 10px 22px;
-      border-radius: 25px;
-      font-size: 1em;
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .product-card button:hover {
-      background: #444;
-    }
-    footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 18px 0;
-      margin-top: 50px;
-    }
-    @media (max-width: 900px) {
-      .products {
-        flex-direction: column;
-        align-items: center;
-      }
-      .product-card {
-        margin-bottom: 30px;
-      }
-      .hero {
-        padding: 30px 12px;
-      }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px 12px;
-      }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Байанбаатар — Уртын дууны аялгуу</title>
+  <meta name="description" content="Байанбаатар — Бараатын дөмөн аялгуу: Уртын дууг хүүхэд, залууст таниулах, сурах боломж олгох соёлын веб сайт." />
+
+  <!-- Фонт: уншихад эвтэйхэн -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Гол CSS -->
+  <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-  <header>
-    <div class="logo">NIKE</div>
-    <nav>
-      <a href="#">Нүүр</a>
-      <a href="#">Бүтээгдэхүүн</a>
-      <a href="#">Холбоо барих</a>
-      <a href="#">Нэвтрэх</a>
-    </nav>
+  <!-- Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <a class="brand" href="#home" aria-label="Нүүр хуудас — Байанбаатар">
+        <!-- Энгийн монгол хэв маягтай SVG -->
+        <svg class="brand-mark" viewBox="0 0 100 100" width="46" height="46" aria-hidden="true">
+          <rect width="100" height="100" rx="14" fill="#fff6ea"/>
+          <path d="M18 60 Q50 18 82 60" stroke="#8b3e00" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M30 72 Q50 38 70 72" stroke="#f59b00" stroke-width="3" fill="none"/>
+        </svg>
+        <div class="brand-text">
+          <h1>Байанбаатар</h1>
+          <p class="tag">Бараатын дөмөн аялгуу — Уртын дуу</p>
+        </div>
+      </a>
+
+      <button id="hamburger" class="hamburger" aria-controls="main-nav" aria-expanded="false" aria-label="Цэс">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="main-nav" class="nav" role="navigation" aria-label="Үндсэн цэс">
+        <ul class="nav-list">
+          <li><a href="#home">Нүүр</a></li>
+          <li><a href="#about">Танилцуулга</a></li>
+          <li><a href="#guide">Удирдамж</a></li>
+          <li><a href="#training">Сургалтууд</a></li>
+          <li><a href="#listen">Сонсох</a></li>
+          <li><a href="#contest">Уралдаан</a></li>
+          <li><a href="#heroes">Бидний бахархал</a></li>
+          <li><a href="#carriers">Өвлөн тээгчид</a></li>
+          <li><a href="#news">Мэдээ</a></li>
+          <li><a href="#contact">Холбоо</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Just Do It.</h1>
-      <p>Шинэ коллекц, шилдэг гуталнууд Nike дээр худалдаанд гарлаа.</p>
-      <button>Дэлгэрэнгүй үзэх</button>
+
+  <main id="home">
+    <!-- Hero / Banner -->
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h2>Байанбаатар — Уртын дууны аялгуу</h2>
+          <p class="lead">Бараатын дөмөн аялгууг хүүхэд ба залуучуудын дунд таниулах, сурах боломж олгох соёлын веб сайт.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#about">Уртын дуу гэж юу вэ?</a>
+            <a class="btn" href="#listen">Сонсох</a>
+            <a class="btn ghost" href="#training">Сургалт</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <!-- Subtle traditional motif -->
+          <svg viewBox="0 0 300 220" class="motif" width="320" height="240">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0" stop-color="#ffd89b"/>
+                <stop offset="1" stop-color="#ff7e5f"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="160" cy="120" rx="110" ry="80" fill="url(#g)" opacity="0.95" stroke="#8b3e00" stroke-width="2"></ellipse>
+            <path d="M80 150 Q140 60 220 150" stroke="#8b3e00" stroke-width="6" fill="none" stroke-linecap="round"></path>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section container">
+      <header class="section-head">
+        <h3>Танилцуулга</h3>
+        <p class="section-sub">Урт, байгаль, уламжлалыг илэрхийлэх монголын уртын дуу</p>
+      </header>
+
+      <div class="two-col">
+        <div>
+          <h4>Уртын дуу гэж юу вэ?</h4>
+          <p>Уртын дуу — монголын уламжлалт дууны төрөл. Аялгуу нь урт, гоёмсог, хүний хоолойг гүн гүнзгий ашиглан байгалийн дүр төрх, түүх, сэтгэлийг дамжуулна.</p>
+
+          <h4>Бараатын дөмөн аялгууны онцлог</h4>
+          <ul>
+            <li>Урт, сунжирсан фраз — нэг дуу нь хэдэн минут үргэлжилж болно.</li>
+            <li>Морин хуурын энгийн дагалдан тоглолт.</li>
+            <li>Байгалийн болон хүний сэтгэлийн дүрслэл түлхүү илэрнэ.</li>
+          </ul>
+
+          <h4>Энэхүү сайтад</h4>
+          <p>Товч тайлбар, сурах алхамууд, аудио жишээ, сургалт, уралдаан болон хүрээлэн буй орчны зурагнаас бүрдэнэ — хүүхэд, залууст зориулсан энгийн хэллэгээр.</p>
+        </div>
+
+        <aside class="card">
+          <h5>Баримт</h5>
+          <p><strong>Төрөл:</strong> Уртын дуу<br><strong>Зорилго:</strong> Сурталчлах, сурах, хадгалах</p>
+          <p class="muted">Энэхүү сайт нь соёлын өвийг хүүхэд ба залууст ойлгомжтой хэлбэрээр хүргэнэ.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Guide / Удирдамж -->
+    <section id="guide" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h3>Удирдамж — Хэрхэн сурах вэ</h3>
+          <p class="section-sub">Алхамчилсан зөвлөмжүүд (хүүхдэд ээлтэй)</p>
+        </header>
+
+        <div class="cards-grid">
+          <article class="card">
+            <h4>1. Сонсох</h4>
+            <p>Анхааралтай сонс. Аялгуу хэр урт байгааг ажиглаарай.</p>
+          </article>
+          <article class="card">
+            <h4>2. Амьсгалын дасгал</h4>
+            <p>Урт дууг амьсгалаа зөв хувааж уян хатан гаргах дасгалуудыг давт.</p>
+          </article>
+          <article class="card">
+            <h4>3. Хөгжмийн дагалдан</h4>
+            <p>Морин хуур эсвэл хялбар симфонит дагалдан сонсож аялгуу бариарай.</p>
+          </article>
+          <article class="card">
+            <h4>4. Хүндэтгэл</h4>
+            <p>Уламжлалыг хүндэтгэж, янз бүрийн хувилбарууд, хүний намтрыг судалж үз.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training / Сургалт -->
+    <section id="training" class="section container">
+      <header class="section-head">
+        <h3>Сургалтууд</h3>
+        <p class="section-sub">Анхан / Дунд / Ахисан — Онлайн болон танхим</p>
+      </header>
+
+      <div class="training-grid">
+        <div class="card">
+          <h4>Анхан шат</h4>
+          <p>Сонсох, амьсгалын хөнгөн дасгал, богино аялгууг эзэмших.</p>
+        </div>
+
+        <div class="card">
+          <h4>Дунд шат</h4>
+          <p>Урт фраз барих, стилистик ялгааг сурах, хамт дуулах дадлага.</p>
+        </div>
+
+        <div class="card">
+          <h4>Ахисан шат</h4>
+          <p>Көрүүлбэр, соль тоглолт, аялгууны гүн утга дээр ажиллах.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listen / Сонсох -->
+    <section id="listen" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h3>Сонсох — Аудио жишээнүүд</h3>
+          <p class="section-sub">Анхаарал төвлөрөх тайван layout</p>
+        </header>
+
+        <div class="listen-grid">
+          <div class="card">
+            <h4>Бараатын дөмөн аялгуу — Жишээ</h4>
+            <audio id="audioSample" controls preload="none">
+              <!-- Та өөрийн сервер дээр файл байрлуулах хэрэгтэй -->
+              <source src="audio/urtin_duu_sample.mp3" type="audio/mpeg">
+              Таны хөтөч аудио дэмжихгүй байна.
+            </audio>
+            <p class="muted">Аудио нь зөвшөөрөгдөөгүй тохиолдолд холбоосыг мөн байрлуулж болно.</p>
+          </div>
+
+          <div class="card">
+            <h4>Тайлбар</h4>
+            <p>Энэ дуу нь Байанбаатар бүс нутгийн аялгуутай ижил онцлогтой — урт, байгалийн дүрслэл давамгайлна.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contest / Уралдаан -->
+    <section id="contest" class="section container">
+      <header class="section-head">
+        <h3>Уралдаан</h3>
+        <p class="section-sub">Оролцох нөхцөл ба шагнал</p>
+      </header>
+
+      <div class="two-col">
+        <div>
+          <h4>Зорилго</h4>
+          <p>Хүүхэд, залууст уртын дууг сонирхох урам өгөх, ур чадварыг дэмжих.</p>
+
+          <h4>Нөхцөл</h4>
+          <ul>
+            <li>Насны ангилал: 8-12, 13-17, 18-25</li>
+            <li>Дууны урт: 3–10 минут</li>
+            <li>Аудио эсвэл видео илгээж оролцоно</li>
+          </ul>
+        </div>
+
+        <aside class="card">
+          <h5>Шагнал</h5>
+          <p>Тэргүүн байранд сургалтад үнэ төлбөргүй хамруулах, дурсгалын шагнал</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Heroes / Бидний бахархал -->
+    <section id="heroes" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h3>Бидний бахархал</h3>
+          <p class="section-sub">Алдарт уран бүтээлчид, өвлөн тээгчид</p>
+        </header>
+
+        <div class="profile-grid">
+          <article class="profile card">
+            <img data-src="images/artist1.jpg" alt="Алдарт дуучин" class="lazy">
+            <h4>Алдарт уран бүтээлч</h4>
+            <p class="muted">Товч намтар, ололт амжилт</p>
+          </article>
+
+          <article class="profile card">
+            <img data-src="images/artist2.jpg" alt="Дуучин" class="lazy">
+            <h4>Өвлөн тээгч</h4>
+            <p class="muted">Сурах болон дамжуулах үүрэгтэй</p>
+          </article>
+
+          <article class="profile card">
+            <img data-src="images/artist3.jpg" alt="Уран бүтээлч" class="lazy">
+            <h4>Залуу өвлөн тээгч</h4>
+            <p class="muted">Ирээдүйн туурвил</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carriers / Өвлөн тээгчид -->
+    <section id="carriers" class="section container">
+      <header class="section-head">
+        <h3>Өвлөн тээгчид</h3>
+        <p class="section-sub">Хэн бэ, яагаад чухал вэ</p>
+      </header>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h4>Өвлөн тээгч гэж хэн бэ?</h4>
+          <p>Соёл, дууг үр удамд дамжуулах үүрэгтэй хүн. Ахмад болон залуу өвлөн тээгчид энд хамрагдана.</p>
+        </div>
+
+        <div class="card">
+          <h4>Ач холбогдол</h4>
+          <p>Соёлын өв хадгалах, олон нийтэд таниулах, сургалт явуулах.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- News / Мэдээ -->
+    <section id="news" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h3>Мэдээ</h3>
+          <p class="section-sub">Сургалтын зар, арга хэмжээ, уралдааны мэдээлэл</p>
+        </header>
+
+        <div class="news-list">
+          <article class="news card">
+            <h4>Сургалтын бүртгэл эхэллээ</h4>
+            <p class="muted">2026-02-01 — Бага насны ангиуд бүртгэж байна.</p>
+            <p>Сургалтууд танхим болон онлайн хэлбэртэй болно. Хэдэн хоногийн мэдээллийг энд байрлуулна.</p>
+          </article>
+
+          <article class="news card">
+            <h4>Уралдааны мэдэгдэл</h4>
+            <p class="muted">2026-03-15 — Оролцох журам:...</p>
+            <p>Дэлгэрэнгүй мэдээллийг холбогдох холбоосоор илгээнэ.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section container">
+      <header class="section-head">
+        <h3>Холбоо барих</h3>
+        <p class="section-sub">Танд асуулт байвал бидэнд илгээнэ үү</p>
+      </header>
+
+      <div class="two-col">
+        <aside class="card">
+          <h4>Хаяг, холбоо</h4>
+          <p>И-мэйл: <a href="mailto:ovcl.worldheritage@gmail.com">ovcl.worldheritage@gmail.com</a></p>
+          <p>Утас: <a href="tel:+97691919791">+976 91919791</a></p>
+        </aside>
+
+        <form id="contactForm" class="card form" aria-label="Холбоо барих">
+          <label for="cname">Нэр</label>
+          <input id="cname" name="name" type="text" required placeholder="Таны нэр">
+
+          <label for="cemail">И-мэйл</label>
+          <input id="cemail" name="email" type="email" required placeholder="example@mail.mn">
+
+          <label for="cmsg">Зурвас</label>
+          <textarea id="cmsg" name="message" rows="5" required placeholder="Танд юу асуух вэ?"></textarea>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Илгээх</button>
+            <button type="reset" class="btn">Цэвэрлэх</button>
+          </div>
+
+          <p id="formStatus" class="muted" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Small interactive quiz for kids -->
+    <section id="mini-quiz" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h3>Сурч тоглоё — Богино асуултууд</h3>
+          <p class="section-sub">Хүүхдэд ээлтэй, богино тест</p>
+        </header>
+
+        <div class="quiz card" id="quiz" aria-live="polite">
+          <div id="qText" class="q-text">Бэлэн үү?</div>
+          <ul id="qAnswers" class="q-answers"></ul>
+          <div class="quiz-controls">
+            <button id="qStart" class="btn primary">Эхлэх</button>
+            <div id="qResult" class="muted" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Байанбаатар — Уртын дуу. Энэхүү сайт нь соёлын өвийг хүндэтгэн боловсруулсан.</p>
     </div>
-  </div>
-  <div class="products">
-    <div class="product-card">
-      <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/5c8b84f3-5d23-49e7-b0a6-9f7b8b0d8674/air-max-90-shoes-KkLcGR.png" alt="Nike Air Max 90">
-      <h2>Nike Air Max 90</h2>
-      <p>Чамин, дээд зэрэглэлийн Air Max 90 эрэгтэй гутал.</p>
-      <button>Худалдаж авах</button>
-    </div>
-    <div class="product-card">
-      <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/ee2e8b1d-8d7a-4e2c-9c8a-d8e8d3b3d9e7/air-force-1-07-shoes-6jXG0F.png" alt="Nike Air Force 1">
-      <h2>Nike Air Force 1</h2>
-      <p>Энгийн бөгөөд цэвэрхэн Air Force 1 загварын гутал.</p>
-      <button>Худалдаж авах</button>
-    </div>
-    <div class="product-card">
-      <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/3e7a9c2e-1f0f-4c0d-9e2c-8c44c7d4a0d7/pegasus-40-road-running-shoes-8T0ZrR.png" alt="Nike Pegasus 40">
-      <h2>Nike Pegasus 40</h2>
-      <p>Хөнгөн, хурдан гүйгчдэд зориулсан Pegasus 40.</p>
-      <button>Худалдаж авах</button>
-    </div>
-  </div>
-  <footer>
-    © 2025 Nike Mongolia. Бүх эрх хуулиар хамгаалагдсан.
   </footer>
+
+  <!-- Lightbox for gallery images (hidden by default) -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-label="Зургийн томруулалт">
+    <button id="lbClose" class="lb-close" aria-label="Хаах">✕</button>
+    <img id="lbImage" src="" alt="">
+    <p id="lbCaption" class="muted"></p>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
-<div class="product-card">
-  <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/5c8b84f3-5d23-49e7-b0a6-9f7b8b0d8674/air-max-90-shoes-KkLcGR.png" alt="Nike Air Max 90" style="margin-bottom: 16px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.10);">
-  <h2>Nike Air Max 90</h2>
-  <p>Чамин, дээд зэрэглэлийн Air Max 90 эрэгтэй гутал.</p>
-  <button>Худалдаж авах</button>
-</div>
