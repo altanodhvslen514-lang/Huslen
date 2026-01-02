@@ -1,0 +1,141 @@
+/* styles.css
+   Mobile-first responsive design for "Байанбаатар — Уртын дуу"
+   - Modern minimal + traditional Mongol accents
+   - Accessibility-friendly sizes and contrasts
+*/
+
+/* ============================
+   Variables & Base Reset
+   ============================ */
+:root{
+  --bg:#fffdf8;
+  --card:#ffffff;
+  --accent:#8b3e00;    /* brown/traditional */
+  --accent-2:#f59b00;  /* warm orange */
+  --muted:#6b6b6b;
+  --text:#1d1d1d;
+  --glass: rgba(255,255,255,0.6);
+  --radius:12px;
+  --container:1100px;
+  --shadow: 0 10px 30px rgba(17,17,17,0.06);
+  --focus: 3px solid rgba(245,155,0,0.18);
+  --max-width:var(--container);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: linear-gradient(180deg,var(--bg),#fff);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  font-size:16px;
+}
+
+/* Container */
+.container{max-width:var(--max-width);margin:0 auto;padding:16px}
+
+/* ============================
+   Header / Navigation
+   ============================ */
+.site-header{background:linear-gradient(90deg,#fffaf0,#fff6ea);border-bottom:1px solid rgba(139,62,0,0.06);position:sticky;top:0;z-index:1200}
+.header-row{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.brand-mark{flex:0 0 auto;border-radius:8px;box-shadow:var(--shadow)}
+.brand-text h1{font-size:18px;margin:0}
+.tag{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Hamburger (visible on mobile) */
+.hamburger{display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;padding:8px;border-radius:8px;background:transparent;border:none;cursor:pointer}
+.hamburger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:transform .22s,opacity .22s}
+
+/* Nav list (mobile collapsed) */
+.nav{position:fixed;inset:0;left:100%;background:linear-gradient(180deg,#fff,#fff9f2);padding-top:86px;transition:left .28s;z-index:1100;overflow:auto}
+.nav.open{left:0}
+.nav-list{display:flex;flex-direction:column;gap:0;padding:0;margin:0;list-style:none}
+.nav-list li{border-top:1px solid rgba(0,0,0,0.04)}
+.nav-list a{display:block;padding:16px 20px;text-decoration:none;color:var(--text);font-weight:600}
+.nav-list a:focus{outline:none;box-shadow:var(--focus);}
+
+/* ============================
+   Hero
+   ============================ */
+.hero{padding:28px 0;background-image:linear-gradient(0deg,rgba(139,62,0,0.02),transparent);}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
+.hero-text h2{font-size:20px;margin:0;color:#6b3f0f}
+.hero-text .lead{margin:10px 0;color:var(--muted)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:10px;border:0;background:transparent;cursor:pointer;font-weight:700}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{border:2px solid rgba(139,62,0,0.12);color:var(--accent)}
+.motif{opacity:.95;border-radius:12px;box-shadow:var(--shadow)}
+
+/* ============================
+   Sections / Layout
+   ============================ */
+.section{padding:28px 0}
+.alt{background:linear-gradient(180deg,#fff,#fff7f0)}
+.section-head h3{font-size:18px;margin:0;color:#7a3f0f}
+.section-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* Two-column layout */
+.two-col{display:grid;grid-template-columns:1fr;gap:18px}
+.card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(200,150,100,0.06)}
+.card img{width:100%;height:auto;border-radius:8px;display:block}
+
+/* Cards grid for guides/training */
+.cards-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.training-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.profile-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.profile img{height:160px;object-fit:cover;border-radius:8px}
+
+/* Listen layout */
+.listen-grid{display:grid;grid-template-columns:1fr;gap:12px}
+
+/* News list */
+.news-list{display:grid;gap:12px}
+
+/* Quiz */
+.quiz{padding:12px}
+.q-text{font-weight:600;margin-bottom:10px}
+.q-answers{list-style:none;padding:0;display:grid;gap:8px}
+.q-answers button{background:#fff;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;text-align:left}
+.q-answers button:focus{outline:none;box-shadow:var(--focus)}
+.muted{color:var(--muted);font-size:13px}
+
+/* Form */
+.form label{display:block;margin-top:10px;font-weight:600}
+.form input,.form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);margin-top:6px;font-size:15px}
+.form-actions{display:flex;gap:8px;margin-top:12px}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);visibility:hidden;opacity:0;padding:20px;transition:opacity .18s}
+.lightbox[aria-hidden="false"]{visibility:visible;opacity:1}
+.lb-close{position:absolute;top:18px;right:22px;background:transparent;border:0;color:#fff;font-size:26px;cursor:pointer}
+
+/* ============================
+   Responsive: Tablet & Desktop
+   ============================ */
+@media (min-width: 640px){
+  .hero-grid{grid-template-columns:1fr 420px;align-items:center}
+  .two-col{grid-template-columns:1fr 320px}
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+  .training-grid{grid-template-columns:repeat(3,1fr)}
+  .profile-grid{grid-template-columns:repeat(3,1fr)}
+  .nav{position:static;left:0;padding:0;background:transparent}
+  .nav-list{flex-direction:row;gap:8px;align-items:center}
+  .hamburger{display:none}
+}
+
+/* Desktop */
+@media (min-width: 1024px){
+  body{font-size:17px}
+  .container{padding:24px}
+  .hero-text h2{font-size:22px}
+  .brand-text h1{font-size:20px}
+}
+
+/* Accessibility focus */
+a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
